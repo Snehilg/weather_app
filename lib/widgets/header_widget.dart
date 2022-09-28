@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app/controller/global_controller.dart';
 import 'package:get/get.dart';
 
@@ -11,8 +12,12 @@ class HeaderWidget extends StatefulWidget {
 }
 
 class _HeaderWidgetState extends State<HeaderWidget> {
+  //variables
   String city = "";
-  GlobalController globalController = Get.put(GlobalController());
+  String date = DateFormat.yMMMd().format(DateTime.now());
+
+  GlobalController globalController =
+      Get.put(GlobalController(), permanent: true);
 
   @override
   void initState() {
@@ -22,6 +27,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     super.initState();
   }
 
+  //function for getting address
   getAddress(latitude, longitude) async {
     //getting full detail of lat and long with geocoding
     List<Placemark> placemark =
@@ -38,7 +44,25 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     return Column(
       children: [
         Container(
-          child: Text(city),
+          margin: const EdgeInsets.only(left: 10, right: 10),
+          alignment: Alignment.topLeft,
+          child: Text(
+            city,
+            style: TextStyle(
+              fontSize: 35,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        Container(
+          margin: const EdgeInsets.only(left: 10, right: 10),
+          alignment: Alignment.topLeft,
+          child: Text(
+            date.toString(),
+            style: TextStyle(fontSize: 20, color: Colors.grey[600]),
+          ),
         ),
       ],
     );
