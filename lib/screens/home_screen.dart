@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weather_app/controller/global_controller.dart';
+import 'package:weather_app/widgets/header_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,14 +21,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Obx(
           () => globalController.checkLoading().isTrue
               ? const Center(child: CircularProgressIndicator())
-              : Container(
-                  child: const Text(
-                    "Lucknow",
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontSize: 30,
-                    ),
-                  ),
+              : ListView(
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    HeaderWidget(),
+                  ],
                 ),
         ),
       ),
