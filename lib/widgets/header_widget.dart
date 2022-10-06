@@ -14,7 +14,8 @@ class HeaderWidget extends StatefulWidget {
 class _HeaderWidgetState extends State<HeaderWidget> {
   //variables
   String city = "";
-  String date = DateFormat.yMMMd().format(DateTime.now());
+  //for getting date in format of dd,mont years
+  String date = DateFormat("yMMMMd").format(DateTime.now());
 
   GlobalController globalController =
       Get.put(GlobalController(), permanent: true);
@@ -61,7 +62,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
           alignment: Alignment.topLeft,
           child: Text(
             date.toString(),
-            style: TextStyle(fontSize: 20, color: Colors.grey[600]),
+            style: TextStyle(fontSize: 17, color: Colors.grey[600]),
           ),
         ),
       ],
